@@ -1,0 +1,100 @@
+/* =========================================================
+   public/assets/css/cbt.css
+   Custom styles layered on top of local Bootstrap 5.
+   ========================================================= */
+
+body {
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+    background-color: #f1f5f9;
+}
+
+/* ---------------- CBT exam header + timer ---------------- */
+.cbt-timer {
+    background: #0f172a;
+    border: 1px solid #334155;
+    color: #7dd3fc;
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: 1.5rem;
+    font-weight: 700;
+    padding: .35rem .9rem;
+    border-radius: .5rem;
+    letter-spacing: 1px;
+}
+
+.cbt-timer-warning {
+    background: #7f1d1d;
+    border-color: #ef4444;
+    color: #fecaca;
+    animation: cbt-pulse 1s infinite alternate;
+}
+
+@keyframes cbt-pulse {
+    from { opacity: 1; }
+    to   { opacity: .55; }
+}
+
+/* ---------------- Question options ---------------- */
+.cbt-option {
+    border: 2px solid #e2e8f0;
+    background: #f8fafc;
+    border-radius: .6rem;
+    padding: .85rem 1rem;
+    margin-bottom: .6rem;
+    cursor: pointer;
+    transition: border-color .15s ease, background .15s ease;
+}
+
+.cbt-option:hover {
+    border-color: #3b82f6;
+    background: #eff6ff;
+}
+
+.cbt-option.selected {
+    border-color: #2563eb;
+    background: #dbeafe;
+    font-weight: 600;
+}
+
+/* ---------------- Diagram / lightbox ---------------- */
+.cbt-diagram {
+    max-height: 300px;
+    max-width: 100%;
+    object-fit: contain;
+    border: 1px solid #cbd5e1;
+    border-radius: .5rem;
+    cursor: zoom-in;
+    background: #0f172a;
+    padding: .5rem;
+}
+
+/* ---------------- Question palette ---------------- */
+.cbt-palette {
+    width: 44px;
+    height: 44px;
+    font-weight: 700;
+    border-radius: .5rem;
+}
+
+.cbt-palette-flagged {
+    background: #a855f7 !important;
+    border-color: #a855f7 !important;
+    color: #fff !important;
+}
+
+.cbt-palette-current {
+    outline: 3px solid #2563eb;
+    outline-offset: 2px;
+}
+
+/* ---------------- Admin tables ---------------- */
+.table > :not(caption) > * > * {
+    padding: .6rem .75rem;
+}
+
+.card {
+    border-radius: .75rem;
+}
+
+.font-monospace {
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+}

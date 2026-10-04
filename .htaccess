@@ -1,0 +1,21 @@
+# cbt_system/.htaccess
+#
+# IMPORTANT: this file must NOT deny the whole tree — public/ has to stay
+# reachable (index.php and process_ajax.php live there).
+# It only nudges visitors into the web root and blocks the obvious entry points
+# to the application code. Fine-grained deny rules live in:
+#   app/.htaccess      -> denies all
+#   config/.htaccess   -> denies all
+#   public/uploads/.htaccess -> denies PHP execution
+
+Options -Indexes
+
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    # Convenience: /cbt_system/  ->  /cbt_system/public/
+    RewriteRule ^$ public/ [L]
+
+    # Never route app/ or config/ through the front controller
+    RewriteRule ^(app|config)(/.*)?$ - [F,L]
+</IfModule>

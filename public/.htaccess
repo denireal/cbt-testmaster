@@ -1,0 +1,25 @@
+# public/.htaccess — Apache (XAMPP) rewrite + light hardening
+# Requires mod_rewrite (enabled by default in XAMPP's httpd.conf)
+
+Options -Indexes
+DirectoryIndex index.php
+
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    # Serve real files/directories directly (assets, uploads, css, js)
+    RewriteCond %{REQUEST_FILENAME} -f [OR]
+    RewriteCond %{REQUEST_FILENAME} -d
+    RewriteRule ^ - [L]
+
+    # Pretty URLs: /admin_dashboard  ->  index.php?page=admin_dashboard
+    RewriteRule ^([A-Za-z0-9_\-]+)/?$ index.php?page=$1 [L,QSA]
+</IfModule>
+
+# Never expose schema dumps, notes or logs from the web root
+<FilesMatch "\.(sql|md|log|ini|env|lock)$">
+    Require all denied
+</FilesMatch>
+
+# NOTE: PHP must stay enabled here — index.php and process_ajax.php run from
+# this folder. PHP execution is disabled only inside uploads/ (see uploads/.htaccess).
